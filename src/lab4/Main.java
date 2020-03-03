@@ -1,18 +1,16 @@
 package lab4;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
 
 public class Main {
 
 
 
     public static void main(String[] args){
-        ArrayList<SMO> smo = new ArrayList<SMO>();
+        ArrayList<SMO> smo = new ArrayList<>();
         int numSMO;
         SystEntry systEntry;
-        ArrayList<Join> join = new ArrayList<Join>();
+        ArrayList<Join> join = new ArrayList<>();
         JoinIN joinIn;
         JoinOUT joinOut;
         double tmin;
@@ -26,8 +24,6 @@ public class Main {
         double timeNow = 0.0;
         ExpRandom random = new ExpRandom();
         numSMO = 2; //кількість СМО
-        choice = 1; //ймовірність вибору маршруту
-        prob = 0;
         for (int i = 0; i < numSMO; i++){
             averQue.add(0.0);
             averDevice.add(0.0);
@@ -51,7 +47,7 @@ public class Main {
                     tmp = false;
                 }
                 if ((smo.get(i).getMinTime() == tmin)){
-                    if  (tmp == true){
+                    if  (tmp){
                         event = i + 1;
                     }
                     else {
@@ -97,15 +93,15 @@ public class Main {
         }
         prob = prob/systEntry.getNumArrival();
 
-        System.out.println("Modeling time: " + t);
-        System.out.println("Probability of Refusal: " + prob);
-        System.out.println("NumServ: " + joinOut.getNumService());
-        System.out.println("NumArriv: " + systEntry.getNumArrival());
-        System.out.println("AverQue1: " + averQue.get(0));
-        System.out.println("AverDev1: " + averDevice.get(0));
-        System.out.println("UnservIn: " + joinIn.getNumUnServ());
-        System.out.println("AverDev2: " + averDevice.get(1));
-        System.out.println("Unserv2: " + join.get(0).getNumUnServ());
+        System.out.println("Час моделювання:                             " + t);
+        System.out.println("Ймовірність відмови:                         " + prob);
+        System.out.println("Кількість вимог, що були обслуговані:        " + joinOut.getNumService());
+        System.out.println("Кількість вимог, що надійшли в мережу:       " + systEntry.getNumArrival());
+        System.out.println("Середня довжина черги в СМО1:                " + averQue.get(0));
+        System.out.println("Середня кількість зайнятих пристроїв в СМО1: " + averDevice.get(0));
+        System.out.println("Кількість необслугованих вимог в СМО1:       " + joinIn.getNumUnServ());
+        System.out.println("Середня кількість зайнятих пристроїв в СМО2: " + averDevice.get(1));
+        System.out.println("Кількість необслугованих вимог в СМО2:       " + join.get(0).getNumUnServ());
 
     }
 }
